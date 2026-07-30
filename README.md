@@ -1,6 +1,6 @@
 # Custom Programming Language - Inspired by Python
 
-A lightweight interpreted programming language written entirely in C++. The project includes a hand-written lexer, recursive-descent parser, abstract syntax tree (AST), and tree-walking interpreter. The language uses Python-inspired syntax while remaining intentionally simple for educational purposes.
+A lightweight interpreted programming language written entirely in C++. The project implements every stage of the language pipeline—from lexical analysis and recursive-descent parsing to Abstract Syntax Tree (AST) generation and interpretation—without relying on third-party parsing libraries. Inspired by Python, the language provides a clean, readable syntax while demonstrating the core concepts behind modern language implementation.
 
 ## Features
 - Hand-written lexer
