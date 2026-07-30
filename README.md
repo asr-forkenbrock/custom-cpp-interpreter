@@ -95,6 +95,9 @@ The interpreter reports runtime errors including:
 - Invalid comparison types
 - Invalid logical operations
 
+## Known Issues
+- Memory leaks with AST after program ends
+
 ## Known Limitations
 - Function arguments cannot currently be expressions (only variables and literal values).
 - Only integer numeric types are supported.
