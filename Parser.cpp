@@ -739,7 +739,16 @@
             Functions["_abs_"] = BuiltInFuncNode(1); 
             Functions["_str_input_"] = BuiltInFuncNode(0); 
             Functions["_num_input_"] = BuiltInFuncNode(0); 
-
+            Functions["_min_"] = BuiltInFuncNode(2); 
+            Functions["_max_"] = BuiltInFuncNode(2); 
+            Functions["_pow_"] = BuiltInFuncNode(2); 
+            Functions["_rand_"] = BuiltInFuncNode(2); 
+            Functions["_upper_"] = BuiltInFuncNode(1); 
+            Functions["_lower_"] = BuiltInFuncNode(1); 
+            Functions["_substr_"] = BuiltInFuncNode(3); 
+            Functions["_find_"] = BuiltInFuncNode(2); 
+            Functions["_to_string_"] = BuiltInFuncNode(1); 
+            Functions["_to_number_"] = BuiltInFuncNode(1); 
         }
 
 
