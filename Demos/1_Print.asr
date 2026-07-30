@@ -1,0 +1,6 @@
+print("Hello, world!")
+print(2026)
+let var = "Variable"
+print(var)
+print(1 == 1)
+end
