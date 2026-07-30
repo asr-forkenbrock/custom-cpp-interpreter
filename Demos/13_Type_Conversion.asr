@@ -1,0 +1,9 @@
+let number = 42
+
+let str = to_string(number)
+print("string: " + str)
+
+let num = to_number(str)
+print(num)
+
+end

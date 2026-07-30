@@ -1,0 +1,8 @@
+let age = 20
+let name = "Noah"
+let online = 1 == 1
+
+print(age)
+print(name)
+print(online)
+end

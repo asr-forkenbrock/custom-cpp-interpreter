@@ -1,0 +1,8 @@
+let text = "Programming"
+
+print(len(text))
+print(upper(text))
+print(lower(text))
+print(find(text, "gram"))
+//print(substr(text, 0, 7))
+end

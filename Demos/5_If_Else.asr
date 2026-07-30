@@ -1,0 +1,9 @@
+let score = 92
+
+if(score >= 90){
+    print("A")
+}else{
+    print("Not an A")
+}
+
+end

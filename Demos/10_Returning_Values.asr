@@ -1,0 +1,9 @@
+func square(x){
+    return x * x
+}
+
+let value = square(8)
+
+print(value)
+
+end

@@ -1,0 +1,9 @@
+print(sqrt(25))
+let x = 0 - 8
+print(abs(x))
+print(min(10, 4))
+print(max(10, 4))
+print(pow(2, 8))
+print(rand(1, 10))
+
+end

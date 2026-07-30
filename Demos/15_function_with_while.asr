@@ -1,0 +1,14 @@
+func factorial(n){
+    let result = 1
+
+    while(n > 1){
+        let result = result * n
+        let n = n - 1
+    }
+
+    return result
+}
+
+print(factorial(5))
+
+end
