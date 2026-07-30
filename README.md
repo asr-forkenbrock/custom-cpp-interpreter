@@ -55,6 +55,8 @@ Parser.cpp         Builds the Abstract Syntax Tree
 Interpreter.cpp    Executes the AST
 main.cpp           Program entry point
 ```
+## Debugging
+- inside config.h file you can set what component you want to debug
 
 ## Prerequisites
 - C++17 compatible compiler
@@ -81,7 +83,7 @@ g++ main.cpp Lexer.cpp Parser.cpp Interpreter.cpp -std=c++17 -O2 -o asr-envi
 Run:
 
 ```bash
-./asr-envi
+./asr-envi *filename*
 ```
 
 ## Runtime Errors
