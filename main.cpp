@@ -1,10 +1,8 @@
 #include "Interpreter.h"
 
-//  clear && g++ main.cpp Lexer.cpp Parser.cpp Interpreter.cpp -o asr-envi && ./asr-envi
-
 int main(){ 
     VirtualMachine VM; 
-    VM.RunProgram("Test.asr");
+    VM.RunProgram("Demos/17_full_demo.asr"); //Change this path for the file you'd like to run!
     return 0; 
 }
 
