@@ -10,10 +10,10 @@
 #include <cctype>    
 
 
-inline bool lexer_debug = 1;    //Display tokens
-inline bool parser_debug = 1;   //Display parse picking 
+inline bool lexer_debug = 0;    //Display tokens
+inline bool parser_debug = 0;   //Display parse picking 
 inline bool ast_debug = 1;      //Displays AST
-inline bool var_debugging = 1;  //Display Variables after execution  
+inline bool var_debugging = 0;  //Display Variables after execution  
 
 
 
