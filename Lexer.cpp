@@ -45,7 +45,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         bool LEXER::CheckKeyWord(int line, int start, int end){
             std::string tmp = ProgramLines[line].substr(start, end-start); 
             bool check = false; 
-            if(!string_found){
+            if(!string_found && tmp.find('"') == std::string::npos){
                 if(tmp.find("let") != std::string::npos){
                     ProgramTokens.push_back(Token{Assignment, "LET"}); check=true; 
                 }
@@ -159,6 +159,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 if(string_found){ 
                     string_found=false; 
                     output = string_tmp; 
+                    string_tmp=""; 
                     outputType = String; 
                     return true;
                 }else{ 
@@ -195,6 +196,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 if(ProgramLines[line][index] == '\n' or index == ProgramLines[line].length()){
                     outputType = Syntax_NewLine; output = "____NEWLINE____"; check = true; 
                 }
+
             }else{
                 if(ProgramLines[line][index] != '"'){
                     string_tmp += ProgramLines[line][index]; 
