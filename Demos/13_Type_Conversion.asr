@@ -1,8 +1,9 @@
 let number = 42
 
 let str = to_string(number)
-print("string: " + str)
-
+print("String: " + str)
+print(" ")
+print("Number: ")
 let num = to_number(str)
 print(num)
 
