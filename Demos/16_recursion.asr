@@ -8,6 +8,12 @@ func factorial(n){
 
 }
 
-print(factorial(6))
+print("Input a Number:")
+let input = num_input()
+
+print(" ")
+
+print("Output Factorial:")
+print(factorial(input))
 
 end
