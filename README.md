@@ -96,7 +96,7 @@ The interpreter reports runtime errors including:
 - Invalid logical operations
 
 ## Known Issues
-- Memory leaks with AST after program ends
+- Nested functions cause parser fault
 
 ## Known Limitations
 - Function arguments cannot currently be expressions (only variables and literal values).
