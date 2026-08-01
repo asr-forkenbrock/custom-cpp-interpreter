@@ -72,19 +72,23 @@ func cube(x){
     return x * x * x
 }
 
-print(square(9))
-print(cube(4))
+func test(x, y, z){
+    let result = x * y * z
+    return result
+}
 
 func factorial(n){
 
     if(n <= 1){
         return 1
     }
-    let nn = n - 1
-    return n * factorial(nn)
+    return n * factorial(n - 1)
 
 }
 
+print(test(2 + 1, 2 - 1 + 1, 3 * 9))
+print(square(9))
+print(cube(4))
 print(factorial(6))
 
 print("################################")
