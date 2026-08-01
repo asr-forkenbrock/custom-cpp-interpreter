@@ -1,3 +1,23 @@
+/*
+Interpreter.cpp
+
+ASR Interpreter - Lexer, Parser, and Interpreter written in C++.
+Copyright (C) 2026  Noah Forkenbrock <asr-forkenbrock> 
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "Interpreter.h"
 
 
@@ -533,4 +553,50 @@ void VirtualMachine::RunProgram(std::string name){
 
     if(ast_debug){ DisplayAST(); } 
     ExecuteProgramAST(); 
+
+    RemoveAST(); 
+}
+
+
+void VirtualMachine::RecurseRemoveAST(ActionNode* root, int &depth, int param){
+        int params_size = root->Params.size(); 
+        if(params_size != 0){
+            depth++; 
+            for(int r=0; r<params_size; r++){
+                RecurseRemoveAST(root->Params[r], depth, r); 
+            }
+            depth--; 
+            root->Params.clear(); 
+            delete root; 
+        }else if(depth != 0){
+            delete root; 
+            root = nullptr; 
+        }
+}
+
+void VirtualMachine::RemoveAST(){
+        int depth = 0; 
+        MainNodeAST* current = root; 
+        MainNodeAST* tmp; 
+        while(current != nullptr){
+            int params_size = current->Data->Params.size(); 
+            if(params_size != 0){
+                for(int r=0; r<params_size; r++){ RecurseRemoveAST(current->Data->Params[r], depth, r); }
+                current->Data->Params.clear(); 
+            }      
+            delete current->Data; 
+            tmp = current -> next; 
+            delete current; 
+            current = tmp; 
+        }
+        root = nullptr; 
+
+
+        for (const auto& [key, value] : Functions) {
+            std::cout << "'" << key << "'\n";
+            depth++; 
+            RecurseRemoveAST(value, depth, 0);
+            depth--; 
+        }
+        Functions.clear(); 
 }
