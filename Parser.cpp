@@ -179,7 +179,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                     var1 = FuncNode(ProgramTokens[token_index].value); 
                     
                     if(ProgramTokens[token_index+2].type != Syntax_Right_Paren){
-                        if(parser_debug){ std::cout << "Function has parameters! \n"; }
+                        if(parser_debug){ std::cout << "Function has parameters!! \n"; }
+                        //function error starts here 
                         token_index+=2; 
 
                         int tmp_end = token_index; int depth = 0;
@@ -188,15 +189,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                             else if(ProgramTokens[tmp_end].type == Syntax_Right_Paren){ if(depth == 0){ break; } depth--; }
                             else if(ProgramTokens[tmp_end].type == Syntax_Comma && depth == 0){ break; } tmp_end++;
                         }
+                        
                         //int tmp_end = token_index; 
                         //while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
                         var1->Params.push_back(ParseExpression(token_index, tmp_end));
-                        if(ProgramTokens[token_index+1].type == Syntax_Comma){
-                            token_index++; 
+                        token_index = tmp_end; 
+                        if(ProgramTokens[token_index].type == Syntax_Comma){
+                            
 
                             while(ProgramTokens[token_index].type == Syntax_Comma){
                                 token_index++; 
-
+                                
                                 int tmp_end = token_index; int depth = 0;
                                 while(true){
                                     if(ProgramTokens[tmp_end].type == Syntax_Left_Paren){ depth++; }
@@ -206,12 +209,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                                 //int tmp_end = token_index; 
                                 //while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
                                 var1->Params.push_back(ParseExpression(token_index, tmp_end));
+                                token_index = tmp_end; 
                             }   
+                        }else{
+                            token_index++; 
                         }
                     }else{
-                        token_index++;
+                        token_index+=2;
                     }
-                    token_index++; //for right paren
+                    //token_index++; //for right paren
 
 
             }else if(ProgramTokens[token_index].type == Variable){
@@ -315,8 +321,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
             ACTION exp_action = None; 
 
             num1 = ParsePrimaryInput(start_index, end_index); 
+
+            //std::cout << "START: " << start_index << "   END: " << end_index << "\n"; 
             
-            if(start_index == end_index){
+            if(start_index >= end_index){
                 return num1; 
             }
 
@@ -371,7 +379,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
         void PARSER::ParseLetStatement(ActionNode* &data, int &token_index){
             int end_index = FindNewLine(token_index); 
-
             ActionNode* var1 = Parse_Token_Variable(token_index); token_index++; 
             ActionNode* exp1; 
 
