@@ -96,7 +96,6 @@ The interpreter reports runtime errors including:
 - Invalid logical operations
 
 ## Known Limitations
-- Function arguments cannot currently be expressions (only variables and literal values).
 - Only integer numeric types are supported.
 - No arrays or lists.
 - No floating-point numbers.
