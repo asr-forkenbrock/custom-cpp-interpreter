@@ -95,9 +95,6 @@ The interpreter reports runtime errors including:
 - Invalid comparison types
 - Invalid logical operations
 
-## Known Issues
-- Nested functions cause parser fault
-
 ## Known Limitations
 - Function arguments cannot currently be expressions (only variables and literal values).
 - Only integer numeric types are supported.
