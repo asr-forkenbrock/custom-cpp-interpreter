@@ -1,5 +1,24 @@
-#include "Parser.h"
+/*
+Parser.cpp
 
+ASR Interpreter - Lexer, Parser, and Interpreter written in C++.
+Copyright (C) 2026  Noah Forkenbrock <asr-forkenbrock> 
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#include "Parser.h"
 
         ActionNode* PARSER::NumberNode(int num){
             ActionNode* num1 = new ActionNode();  
@@ -162,16 +181,30 @@
                     if(ProgramTokens[token_index+2].type != Syntax_Right_Paren){
                         if(parser_debug){ std::cout << "Function has parameters! \n"; }
                         token_index+=2; 
-                        int tmp_end = token_index; 
-                        while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
+
+                        int tmp_end = token_index; int depth = 0;
+                        while(true){
+                            if(ProgramTokens[tmp_end].type == Syntax_Left_Paren){ depth++; }
+                            else if(ProgramTokens[tmp_end].type == Syntax_Right_Paren){ if(depth == 0){ break; } depth--; }
+                            else if(ProgramTokens[tmp_end].type == Syntax_Comma && depth == 0){ break; } tmp_end++;
+                        }
+                        //int tmp_end = token_index; 
+                        //while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
                         var1->Params.push_back(ParseExpression(token_index, tmp_end));
                         if(ProgramTokens[token_index+1].type == Syntax_Comma){
                             token_index++; 
 
                             while(ProgramTokens[token_index].type == Syntax_Comma){
                                 token_index++; 
-                                int tmp_end = token_index; 
-                                while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
+
+                                int tmp_end = token_index; int depth = 0;
+                                while(true){
+                                    if(ProgramTokens[tmp_end].type == Syntax_Left_Paren){ depth++; }
+                                    else if(ProgramTokens[tmp_end].type == Syntax_Right_Paren){ if(depth == 0){ break; } depth--; }
+                                    else if(ProgramTokens[tmp_end].type == Syntax_Comma && depth == 0){ break; } tmp_end++;
+                                }
+                                //int tmp_end = token_index; 
+                                //while(ProgramTokens[tmp_end].type != Syntax_Comma && ProgramTokens[tmp_end].type != Syntax_Right_Paren){ tmp_end++; } 
                                 var1->Params.push_back(ParseExpression(token_index, tmp_end));
                             }   
                         }
@@ -208,33 +241,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         int PARSER::FindRightParen_FromBack(int start_index, int end_index){ 
             int BraceDepth = 1; 
             int End_body_index = start_index+1; 
@@ -263,6 +269,7 @@
 
             if(ProgramTokens[token_index].type == Syntax_Left_Paren){
                 int end = FindRightParen_FromBack(token_index, end_index); 
+                //std::cout << "CHECK: " << ProgramTokens[token_index+1].value << "  " << ProgramTokens[token_index+1].type << "\n"; 
                 val = ParseExpression(token_index+1, end-1); 
                 token_index = end+1; 
             }
@@ -550,7 +557,8 @@
             if(parser_debug){ std::cout << "Function Definiton Found! \n"; }
             std::string func_name = ProgramTokens[token_index].value; 
             if(parser_debug){ std::cout << "Function Name: " << func_name << " \n"; }
-                
+            Functions[func_name] = nullptr;     
+
             ActionNode* PARAMETERNODE = new ActionNode(); 
             PARAMETERNODE->Action = Parameters; 
 
