@@ -36,6 +36,7 @@ let text = "Programming Languages"
 print(len(text))
 print(upper(text))
 print(lower(text))
+print(substr(text, 0, 11))
 print(find(text, "Lang"))
 print(find(text, "Python"))
 
@@ -122,12 +123,13 @@ while(count < 10){
 
 }
 
-//print("################################")
-//print("Nested Function Calls")
+print("################################")
+print("Nested Function Calls")
 
-//print(square(abs(7)))
-//print(max(square(4), cube(2)))
-//print(len(upper("hello world")))
+print(sqrt(abs(sqrt(16)))
+print(square(abs(7)))
+print(max(square(4), cube(2)))
+print(len(upper("hello world")))
 
 print("################################")
 print("Program Done!")
