@@ -164,6 +164,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 if(parser_debug){ std::cout << "NUMBER FOUND \n"; }
                 num1 = NumberNode(std::atoi(ProgramTokens[token_index].value.c_str())); 
             }
+            if(ProgramTokens[token_index].type == Bool){ 
+                if(parser_debug){ std::cout << "BOOLEAN FOUND \n"; }
+                num1 = NumberNode(std::atoi(ProgramTokens[token_index].value.c_str())); 
+            }
             return num1; 
         }
 
