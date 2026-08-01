@@ -118,6 +118,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                 if(tmp.find("%") != std::string::npos){
                     ProgramTokens.push_back(Token{Mod, "MODULO"}); check=true; return check; 
                 }
+                if(tmp.find("true") != std::string::npos){
+                    ProgramTokens.push_back(Token{Bool, "1"}); check=true; return check; 
+                }
+                if(tmp.find("false") != std::string::npos){
+                    ProgramTokens.push_back(Token{Bool, "0"}); check=true; return check; 
+                }
             }
             return check; 
         }
