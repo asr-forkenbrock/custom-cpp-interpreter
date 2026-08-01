@@ -2,8 +2,13 @@ func square(x){
     return x * x
 }
 
-let value = square(8)
+print("Input a Number:")
+let input = num_input()
 
+print(" ")
+
+print("Square:")
+let value = square(input)
 print(value)
 
 end
